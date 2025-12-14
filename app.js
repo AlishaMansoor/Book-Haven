@@ -104,7 +104,7 @@ app.use((req, res, next)=>{
     //ejs templates can only access req.locals.variables...unlike res.user
     next();
 });
-// console.log("Current user:", curr_user);
+
 //landing page(same as allbooks)
 app.get('/', (req, res) => {
     res.redirect('/Books'); // or '/allbooks'
