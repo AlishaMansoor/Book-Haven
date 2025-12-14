@@ -1,0 +1,44 @@
+<% layout("/layouts/boilerplate") -%>
+
+    <div class="row login-container container">
+        <div class="col-6 offset-3 login-card-effect">
+
+            <div class="login-heading">
+                <h4>Log in</h4>
+            </div>
+
+
+
+           
+
+        <form action="/users/login" method="POST" class="login-form" novalidate>
+
+                                <!-- <div class="mb-2">
+                <label for="email" class="form-label">Email: </label>
+                <input type="email" id="email" class="form-control" name="email" required>
+                 the name attribute is required here for extracting the value of title using req.body 
+            </div> -->
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Username: </label>
+                                    <input type="text" id="username" class="form-control  <% if (error && error.length > 0) { %>is-invalid<% } %>" name="username" required>
+                                    <!-- the name attribute is required here for extracting the value of title using req.body -->
+                                     <div class="invalid-feedback">
+                                       Please enter valid username.
+                                     </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password: </label>
+                                    <input type="password" id="password" class="form-control <% if (error && error.length > 0) { %>is-invalid<% } %>" name="password" required>
+                                    <!-- the name attribute is required here for extracting the value of title using req.body -->
+                                      <div class="invalid-feedback">
+                                       Please enter correct password.
+                                      </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-sm btn-success">
+                                    LOG IN
+                                </button>
+                            </form>
+
+        </div>
+    </div>

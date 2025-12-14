@@ -1,0 +1,32 @@
+<% layout("/layouts/boilerplate") -%>
+
+<style>
+    .confirmdelete-wrapper {
+        min-height: 70vh;          /* take vertical space */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .confirmdelete-box {
+        background: white;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+</style>
+
+<div class="confirmdelete-wrapper">
+    <div class="confirmdelete-box">
+        <h5>Are you sure <%=curr_user.username%><br>you want to delete your account?</h5>
+
+        <div class="mt-4">
+            <form action="/users/deleteaccount?_method=DELETE" method="POST" style="display:inline;">
+                <button class="btn confirmdelete-btn">Delete</button>
+            </form>
+
+            <a href="/" class="btn confirmdelete-btn ms-2">Cancel</a>
+        </div>
+    </div>
+</div>

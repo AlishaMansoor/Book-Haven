@@ -1,0 +1,116 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+</head>
+<body> -->
+<% layout("/layouts/boilerplate") -%>
+    <div class="row addbook-container">
+        <div class="col-6 offset-2">
+            <h3>Add New Book</h3>
+            <form action="/Books" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                <div class="mb-2">
+                    <label for="title" class="form-label">Title: </label>
+                    <input type="text" id="title" class="form-control" name="title" placeholder="Enter book title"
+                        required><br>
+                    <!-- the name attribute is required here for extracting the value of title using req.body -->
+
+                    <div class="invalid-feedback">
+                        Please enter book title.
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label for="author" class="form-label">Author: </label>
+                    <input type="text" id="author" class="form-control" name="author" placeholder="Enter Author"
+                        required><br>
+
+                    <div class="invalid-feedback">
+                        Please enter author name.
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label for="image" class="form-label">Upload Image: </label>
+                    <input type="file" id="image" class="form-control" name="image"><br>
+
+                    <div class="invalid-feedback">
+                        Please enter Image Url.
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label for="genre" class="form-label">Genre: </label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="genre[]" value="Fiction" id="g1">
+                        <label class="form-check-label" for="g1">Fiction</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="genre[]" value="Romance" id="g2">
+                        <label class="form-check-label" for="g2">Romance</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="genre[]" value="Mystery" id="g3">
+                        <label class="form-check-label" for="g3">Mystery</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="genre[]" value="Thriller" id="g4">
+                        <label class="form-check-label" for="g4">Thriller</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="genre[]" value="Self-help" id="g5">
+                        <label class="form-check-label" for="g5">Self-help</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="genre[]" value="Classic" id="g6">
+                        <label class="form-check-label" for="g6">Classic</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="genre[]" value="Fantasy" id="g7">
+                        <label class="form-check-label" for="g7">Fantasy</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="genre[]" value="Biography" id="g8">
+                        <label class="form-check-label" for="g8">Biography</label>
+                    </div>
+
+                    <div class="invalid-feedback">
+                        Please select atleast one genre of the book.
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                        <label for="chapters" class="form-label">Chapters: </label>
+                        <input type="number" id="chapters" class="form-control" name="chapters" required><br>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label for="part" class="form-label">Parts: </label>
+                        <input type="number" id="part" class="form-control" name="part" required><br>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                    <label for="price" class="form-label">Price: </label>
+                    <input type="number" id="price" class="form-control" name="price" placeholder="Enter Price"required><br>
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter price of the book.
+                    </div>
+                </div>
+        <div class="mb-2">
+            <label for="desc" class="form-label">Description: </label>
+            <textarea id="desc" class="form-control" name="description"></textarea>
+        </div><br>
+        <button type="submit" class="btn btn-dark addbook-btn">Add</button>
+        </form>
+        <br>
+    </div>
+    </div>
+    <!-- <a href="/Books">Back To Book List</a> -->
+    <!-- </body>
+</html> -->

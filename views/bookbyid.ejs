@@ -1,0 +1,149 @@
+
+   
+<% layout("/layouts/boilerplate") -%>
+    <div>
+        <h2 style="display:flex; justify-content: center; padding-top:2rem;">
+            <%= current_book.title %>
+        </h2>
+    </div>
+
+
+    <div class="row bookbyid-container">
+        <div class="col-8 offset-2">
+            <div class="card bookbyid-card">
+                <!-- <div class="col-8"> -->
+                <img src="<%=current_book.image.url%>" class="card-img-top bookbyid-card-img">
+                <!-- </div> -->
+                <div class="card-body">
+                    <p class="card-text">
+                    <p>
+                        <i>Suggested by <%=current_book.owner.username%></i><br>
+                    </p>
+                    <strong>Author: </strong>
+                    <%=current_book.author%><br>
+                        <strong>Price: </strong>&#8377;<%=current_book.price%><br>
+                            <strong>Genre: </strong>
+                            <!-- <%=current_book.genre%><br> -->
+
+                            <%current_book.genre.forEach(a=> { %>
+                                <%=a%>
+
+                                    <%})%><br>
+                                        <strong>No. of Chapters: </strong>
+                                        <%=current_book.chapters%><br>
+                                            <strong>Parts: </strong>
+                                            <%=current_book.part%><br>
+
+                                                </p>
+
+
+                                                <p>
+                                                <h4>Description of the book<br></h4>
+                                                <%=current_book.description%>
+                                                    </p>
+
+
+                </div>
+            </div>
+            <!-- Edit  -->
+            <!-- <%=current_book.title%> -->
+           <% if(book_ownerid && curr_user && book_ownerid.toString() === curr_user._id.toString()) { %>
+            <div class="book-by-id-btn-container">
+                <!-- <a href="/edit/<%=current_book._id%>" style="margin-right: 10px;">[Edit] </a>&nbsp; -->
+                <form action="/Books/edit/<%=current_book._id%>" style="display:inline;">
+                    <button type="submit" class="btn btn-dark book-by-id-btn"> Edit </button>
+                </form>
+                <!-- Delete Button (Using POST with method-override for DELETE) -->
+                <form action="/Books/<%=current_book._id%>?_method=DELETE" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-dark book-by-id-btn"> Delete </button>
+                </form>
+                <hr>
+            </div>
+            <% } %>
+
+        </div>
+
+        <!-- </div> -->
+
+        <!-- <a href="/review"> Add Review</a> -->
+
+        <% if(curr_user) { %>
+            <!-- <div class="row"> -->
+            <div class="col-8 offset-2">
+                <h3>Add Review</h3>
+
+                <form action="/Books/<%=current_book._id%>/review" method="POST" class="needs-validation mb-3"
+                    novalidate>
+
+                    <div class="mb-3 ">
+                        <label class="form-label ">Rating:</label>
+                        <!--Hidden input to store the selected rating-->
+                        <input type="hidden" max="5" min="1" name="rating" id="rating-value" value="3" required>
+                        <!-- 5 stars -->
+                        <div id="star-rating" class="star-rating">
+                            <i class="fa-regular fa-star" data-value="1"></i>
+                            <i class="fa-regular fa-star" data-value="2"></i>
+                            <i class="fa-regular fa-star" data-value="3"></i>
+                            <i class="fa-regular fa-star" data-value="4"></i>
+                            <i class="fa-regular fa-star" data-value="5"></i>
+                        </div>
+
+
+                    </div>
+                    <div class="mb-3">
+                        <textarea name="reviewcontent" rows="5" class="form-control" novalidate required></textarea>
+                        <div class="invalid-feedback">
+                            Please enter review!
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn  btn-outline-dark btn-sm">Add</button>
+
+                    </div>
+                </form>
+            </div>
+            <!-- </div> -->
+
+            <% } %>
+
+                <hr>
+    </div>
+    <!-- col-sm-12 col-md-6 -->
+    <div class="row">
+
+        <h5>Reviews</h5>
+        <% for(j of current_book.reviews) { %>
+            <div class="card review-card mb-3 col-5 ms-3 review-sm-container">
+                <div class="card-body review-card-body">
+                    <div class="card-text review-card-text">
+
+                        <b>
+                            <%=j.review_author.username%>
+                        </b>
+
+                        <br>
+                        <!-- <%=j.rating%> star -->
+                        <% for(let i=1; i <=5; i++) { %>
+                            <% if(i <=j.rating) { %>
+                                <i class="fa-solid fa-star" style="color: gold;"></i>
+                                <% } else { %>
+                                    <i class="fa-regular fa-star" style="color: gold;"></i>
+                                    <% } %>
+                                        <% } %>
+                                            <br>
+                                            <%=j.reviewcontent%>
+
+
+                    </div>
+                    <% if(curr_user && j.review_author && curr_user._id.toString() ===j.review_author._id.toString()) { %>
+                     
+                    <form action="/Books/<%=current_book._id%>/review/<%=j._id%>?_method=DELETE" method="POST">
+                        <button type="submit" class="btn btn-sm btn-dark review-del-btn mb-3 ">Delete</button>
+                    </form>
+                       <% } %>
+                  
+                </div>
+            </div>
+            <% } %>
+
+    </div>

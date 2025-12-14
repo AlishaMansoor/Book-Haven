@@ -1,0 +1,96 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+</head>
+<body> -->
+<% layout("/layouts/boilerplate") -%>
+    <div class="row editbook-container">
+        <div class="col-6 offset-2">
+            <h3>Edit Book: </h3>
+
+            <form action="/Books/<%=book_to_edit._id%>?_method=PUT" method="POST" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title: </label>
+                    <input type="text" id="title" value="<%=book_to_edit.title%>" name="title"
+                        placeholder="Enter book title" class="form-control" required><br>
+                    <div class="invalid-feedback">
+                        Enter title
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="author" class="form label">Author: </label>
+                    <input type="text" id="author" name="author" value="<%=book_to_edit.author%>"
+                        placeholder="Enter Author" class="form-control" required><br>
+                    <div class="invalid-feedback">
+                        Enter author
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form label">Image: </label>
+                    <input type="text" id="image" name="image" class="form-control" value="<%=book_to_edit.image%>"
+                        required><br>
+                    <div class="invalid-feedback">
+                        Enter Image URL
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <label for="price" class="form label">price: </label>
+                        <input type="number" id="price" class="form-control" name="price"
+                            value="<%=book_to_edit.price%>" placeholder="Enter Price" required><br>
+                        <div class="invalid-feedback">
+                            Enter price
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-8">
+                        <label for="genre" class="form label">Genre: </label>
+                        <div class="checkbox-group">
+                            <% allGenres.forEach(g=> { %>
+                                <label>
+                                    <input type="checkbox" name="genre" value="<%= g %>"  <%= book_to_edit.genre && book_to_edit.genre.includes(g) ? "checked" : "" %>>
+                                    <%= g %>
+                                </label><br>
+                                <% }) %>
+                            </div>
+                        <div class="invalid-feedback">
+                            Select atleast one genre
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-8">
+                        <label for="chapters" class="form label">Chapters: </label>
+                        <input type="number" id="chapters" name="chapters" class="form-control"
+                            value="<%=book_to_edit.chapters%>" required><br>
+                        <div class="invalid-feedback">
+                            Enter chapters
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="part" class="form label">Parts: </label>
+                        <input type="number" id="part" name="part" class="form-control" value="<%=book_to_edit.part%>"
+                            required><br>
+                        <div class="invalid-feedback">
+                            Enter parts
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form label">Description: </label>
+                    <textarea id="description" name="description" class="form-control"
+                        required><%=book_to_edit.description%> </textarea><br>
+                    <div class="invalid-feedback">
+                        Enter description
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-dark editbook-btn">Edit</button>
+            </form>
+        </div>
+    </div>
+    <!-- </body>
+</html> -->

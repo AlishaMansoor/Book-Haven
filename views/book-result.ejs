@@ -1,0 +1,61 @@
+<% layout("/layouts/boilerplate") -%>
+
+<style>
+    .navbar-card-img {
+   /* width: 100% !important; */
+   height: 360px !important;
+   width: 260px !important;
+   object-fit: cover !important;
+    border-radius: 1rem !important;
+   /* height: auto !important; */
+}
+
+
+.navbar-card-img:hover {
+   box-shadow: 4px 4px 16px rgb(170, 166, 166) !important;
+}
+
+
+.book-result-card {
+   max-width: 280px;     /* limits card width */
+  margin: 20px auto;     /* centers the card */
+  
+  overflow: hidden;       /* clips image corners */
+}
+</style>
+
+
+<div class="row ">
+    <div class="col-auto offset-2">
+        <h2>Results on the basis of search :)</h2>
+        <% current_book.forEach(book => { %>
+        <a href="/Books/<%= book._id%>" style="text-decoration: none; color: inherit;">
+        <div class="book-result-card">
+            <img src="<%=book.image.url%>" class=" navbar-card-img">
+            <div class="card-body">
+
+                <p>
+                    <i>Suggested by <%=book.owner.username%></i><br>
+                </p>
+                <b>
+                    <%=book.title%>
+                </b>
+                </p>
+
+                <div style="display:flex; justify-content:space-between;margin-top: 0px; padding:0;">
+                    <p style="margin: 0;">
+                        <%=book.author%>
+                    </p>
+                    <p style="margin: 0;">
+                        &#8377;<%=book.price%>
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+        </a>
+        <br>
+            <% }) %>
+    </div>
+</div>

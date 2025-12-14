@@ -1,0 +1,105 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Books</title>
+</head> -->
+<% layout("/layouts/boilerplate") -%>
+    <!-- <body> -->
+    <!-- <h1 style="margin-top:2rem;">All Books</h1><br> -->
+    <!-- copied later
+     <ul >
+        <% for(let i of Books) { %>
+        <li style="text-decoration: none; display: flex; justify-content: space-between; align-items: center; width: 60%;"> 
+            till here-->
+
+    <!-- [
+            <li> display: flex; make <li>a flexible container 
+            two <span> elements acting as children:
+            First <span> aligned to the left.
+            Second <span> aligned to the right.
+            justify-content: space-between;Pushes 1st span (title) to the left & 2nd span (buttons) to the right.
+            align-items: center;	Keeps everything vertically aligned.
+            ] -->
+
+    <!-- copied later
+             <a href="/Books/<%=i._id%>"><%=i.title%> by <%=i.author%> </a>&nbsp;
+           
+        </li>
+        <%}%>
+    </ul> 
+    till here-->
+    <!-- <a href="/addbook">
+    <button>Add new book</button>
+    </a> -->
+    <!-- </body>
+</html> -->
+<style>
+@media (min-width: 992px) {
+  .allbooks-card {
+    max-width: 250px; /* adjust to a width suitable for book covers */
+    margin: 0 auto;   /* centers card in the column */
+  }
+
+  .allbook-card-img {
+    height: 18rem;    /* keeps image height consistent */
+    width: 100%;      /* image fills the card width */
+  }
+}
+
+/* Extra-small screens: limit card width */
+@media (max-width: 575px) {
+    .allbooks-card {
+        max-width: 220px; /* adjust as needed */
+        margin: 0 auto;   /* centers the card */
+    }
+
+    .allbook-card-img {
+        height: 14rem;    /* slightly shorter height for small screens */
+        width: 100%;
+    }
+}
+
+
+
+</style>
+<div class="filters">
+    <% allGenres.forEach( a=>{ %> 
+        <a href="/Books?genre=<%=a%>" class="filter-link"><%= a %></a>
+        <%})%>
+</div>
+<hr class="line-under-filter">
+<% if (genre) { %>
+     <h3 style="padding-top:2rem;">Results based on "<%= genre %>"</h3>
+<% } else { %>
+<h2 style="padding-top:2rem;">Highly recommended books for beginners</h2>
+    <% } %>
+    <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 g-3">
+        <% for(let i of Books){ %>
+            <div class="col">
+            <a class="card-link" href="/Books/<%=i._id%>">
+                <div class="card allbooks-card">
+                    <img src="<%=i.image.url%>" class="card-img-top allbook-card-img">
+                    <div class="card-body ">
+                        <div style="padding:0;">
+                        <p class="card-text">
+                            <b>
+                                <%=i.title%>
+                            </b>
+                        </p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p>
+                                <%=i.author%>
+                            </p>
+                            <p>
+                                &#8377;<%=i.price%>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            </div>
+            <%}%>
+    </div>

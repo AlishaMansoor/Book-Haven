@@ -1,0 +1,110 @@
+<style>
+
+</style>
+
+
+<nav class="navbar navbar-expand-md navbar-light bg-light border-bottom sticky-top">
+  <div class="container-fluid">
+
+    <i class="fa fa-book" aria-hidden="true"></i>
+<!-- Toggler and Search icon grouped together -->
+    <div class="d-flex align-items-center ms-auto">
+      <!-- Mobile Search Icon -->
+      <button class="btn d-md-none border-0" id="mobileSearchToggle" type="button">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+
+      <!-- Hamburger Menu -->
+      <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+<!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+      <!-- Left Links -->
+      <div class="navbar-nav">
+        <a class="nav-link" href="/Books">All Books</a>
+        <a class="nav-link" href="/Books/addbook">Add new book</a>
+      </div>
+
+      <!-- Desktop Search -->
+      <form class="d-none d-lg-flex mx-auto" role="search" method="POST" action="/Books/book-result">
+        <input class="form-control me-2 navbar-input" type="search" name="search" placeholder="Search books...">
+        <button class="btn navbar-search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass navbar-search-icon"></i> Search
+        </button>
+      </form>
+
+      <!-- Right Section -->
+      <div class="navbar-nav ms-auto px-2">
+
+        <!-- DESKTOP DROPDOWN -->
+        <div class="dropdown d-none d-md-block">
+          <button class="btn btn-light border-0 dropdown-toggle" id="userMenu" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user"></i>
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+            <% if (!curr_user || curr_user === null) { %>
+              <li><a class="dropdown-item" href="/users/signup">Sign up</a></li>
+              <li><a class="dropdown-item" href="/users/login">Log in</a></li>
+            <% } else { %>
+
+              <!-- Username -->
+              <li class="dropdown-item disabled">
+                <i class="fa-solid fa-user" style="font-size: small;"></i>
+                <%= curr_user.username %>
+              </li>
+
+              <li><a class="dropdown-item" href="/users/logout">Logout</a></li>
+              <li><a class="userdetails" href="#" data-bs-toggle="modal" data-bs-target="#deleteAccountModal" style="padding-left:17px;">
+    Delete Account
+</a>
+</li>
+
+            <% } %>
+          </ul>
+        </div>
+
+        <!-- MOBILE VIEW (inside hamburger) -->
+        <div class="d-md-none mt-2">
+
+          <% if (!curr_user) { %>
+
+            <a class="nav-link" href="/users/signup">Sign up</a>
+            <a class="nav-link" href="/users/login">Log in</a>
+
+          <% } else { %>
+
+            <span class="nav-link  disabled">
+              <i class="fa-solid fa-user" style="font-size: smaller;"></i> <%= curr_user.username %>
+            </span>
+
+            <a class="nav-link" href="/users/logout">Logout</a>
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+    Delete Account
+</a>
+
+
+          <% } %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Hidden Mobile Search -->
+<div id="mobileSearchBar" class="container-fluid bg-light py-2 d-none border-bottom">
+  <form class="d-flex" role="search" method="POST" action="/Books/book-result">
+    <input class="form-control me-2 navbar-input" type="search" name="search" placeholder="Search books...">
+    <button class="btn navbar-search-btn" type="submit">
+      <i class="fa-solid fa-magnifying-glass navbar-search-icon"></i> Search
+    </button>
+  </form>
+</div>
