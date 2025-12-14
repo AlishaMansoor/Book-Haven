@@ -105,6 +105,10 @@ app.use((req, res, next)=>{
     next();
 });
 // console.log("Current user:", curr_user);
+//landing page(same as allbooks)
+app.get('/', (req, res) => {
+    res.redirect('/Books'); // or '/allbooks'
+});
 
 //requiring book.js for /Books routes
 const Bookies= require('./routes/Books.js');
